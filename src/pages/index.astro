@@ -1,0 +1,17 @@
+---
+import { Dashboard, Header, SettingsPanel } from "../components";
+import { Layout } from "../components/Layout";
+
+
+---
+
+<Layout>
+	<div class="w-full p-">
+		<Header client:load />
+		<div class="flex justify-between p-10">
+			<Dashboard />
+
+		</div>
+	</div>
+	<SettingsPanel client:load />
+</Layout>
