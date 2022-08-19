@@ -1,7 +1,10 @@
-import { useRef, useState } from "react";
+import { useStore } from "@nanostores/react";
+import { useMemo, useRef, useState } from "react";
 import type { Card } from "../api";
+import { settings } from "../hooks/SettingsStore";
 import { useCardStore } from "../hooks/useCardStore";
 import { useClickedOutside } from "../hooks/useClickedOutside";
+import { CardSizes, SettingsOptions } from "../hooks/useSettings";
 /* 
   REFACTOR LATER  REFACTOR LATER  REFACTOR LATER  REFACTOR LATER 
   REFACTOR LATER  REFACTOR LATER  REFACTOR LATER  REFACTOR LATER 
@@ -15,14 +18,20 @@ const Card = ({
   card: Card;
   deleteCard: (id: number) => void;
 }) => {
+  const setngs = useStore(settings);
+  const CardSize = CardSizes[setngs.cardSize];
   return (
     <div
       onClick={() => {
         window.open(card.url);
       }}
+      style={{
+        width: CardSize.width + "rem",
+        height: CardSize.height + "rem",
+      }}
       className="
       relative group
-      w-64 h-[9rem]  flex items-center justify-center rounded-md hover:cursor-pointer hover:scale-105
+       flex items-center justify-center rounded-md hover:cursor-pointer hover:scale-105
     bg-primary-dark text-primary-light dark:bg-primary-light dark:text-primary-dark
     "
     >
